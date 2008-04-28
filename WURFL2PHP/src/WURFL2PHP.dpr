@@ -23,11 +23,11 @@ program WURFL2PHP;
 
 uses
   Forms,
-  wurfl in '..\..\library\src\wurfl.pas',
-  uWURFL in '..\..\library\src\uWURFL.pas',
   eHashList in '..\..\library\mirror\eHashList.pas',
   FAbout in '..\..\library\mirror\FAbout.pas' {fmAbout},
-  FMain in '..\src\FMain.pas' {fmMain};
+  FMain in 'gui\FMain.pas' {fmMain},
+  uWURFL in '..\..\library\src\lib\uWURFL.pas',
+  wurfl in '..\..\library\src\lib\wurfl.pas';
 
 {$R *.res}
 
