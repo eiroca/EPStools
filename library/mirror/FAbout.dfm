@@ -15,48 +15,33 @@ object fmAbout: TfmAbout
   Position = poMainFormCenter
   PixelsPerInch = 96
   TextHeight = 13
-  object Memo1: TMemo
-    Left = 0
-    Top = 0
-    Width = 364
-    Height = 209
-    Align = alTop
+  object Label1: TLabel
+    Left = 8
+    Top = 8
+    Width = 348
+    Height = 185
     Alignment = taCenter
-    Lines.Strings = (
-      ''
-      'Copyright (C) 1996-2008 eIrOcA Enrico Croce & Simona Burzio'
-      ''
-      
-        'This program is free software: you can redistribute it and/or mo' +
-        'dify it '
-      
-        'under the terms of the GNU General Public License as published b' +
-        'y the '
-      
-        'Free Software Foundation, either version 3 of the License, or (a' +
-        't your '
-      'option) any later version.'
-      ''
-      
-        'This program is distributed in the hope that it will be useful, ' +
-        'but '
-      'WITHOUT ANY WARRANTY; without even the implied warranty of '
-      'MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the '
-      'GNU General Public License for more details.'
-      ''
-      
-        'You should have received a copy of the GNU General Public Licens' +
-        'e along '
-      'with this program.  If not, see <http://www.gnu.org/licenses/>.')
-    TabOrder = 0
-    ExplicitWidth = 362
+    AutoSize = False
+    Caption = 
+      'Copyright (C) 1996-2008 eIrOcA Enrico Croce && Simona Burzio'#13#13'Th' +
+      'is program is free software: you can redistribute it and/or modi' +
+      'fy it under the terms of the GNU General Public License as publi' +
+      'shed by the Free Software Foundation, either version 3 of the Li' +
+      'cense, or (at your option) any later version.'#13#13'This program is d' +
+      'istributed in the hope that it will be useful, but WITHOUT ANY W' +
+      'ARRANTY; without even the implied warranty of MERCHANTABILITY or' +
+      ' FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public L' +
+      'icense for more details.'#13#13'You should have received a copy of the' +
+      ' GNU General Public License along with this program.  If not, se' +
+      'e <http://www.gnu.org/licenses/>.'
+    WordWrap = True
   end
   object BitBtn1: TBitBtn
-    Left = 150
-    Top = 215
+    Left = 147
+    Top = 207
     Width = 70
     Height = 25
-    TabOrder = 1
+    TabOrder = 0
     Kind = bkOK
   end
 end
