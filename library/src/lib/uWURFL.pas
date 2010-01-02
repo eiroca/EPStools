@@ -29,12 +29,12 @@ uses
 const
   OUT_HANDSETPATH = 'export\';
 
-  PHP_BEGIN       = '<?php ';
+  _PHP_COPYRIGHT   = '/** This file is dynamically generated form WURFL XML file. */'+char(13);
+  PHP_BEGIN       = '<?php '+_PHP_COPYRIGHT;
   PHP_END         = '?>';
   PHP_REGFILE     = 'handset_reg_%s.inc';
   PHP_REGINDEX    = 'handset_index.inc';
   PHP_DEFFILE     = 'wurfl\export\';
-  PHP_COPYRIGHT   = '/** This file is dynamically generated form WURFL XML file. */'+char(13);
 
 (*
   PHP_CLASS_OPEN  = 'class %s extends %s {'+chr(13);
@@ -216,11 +216,11 @@ begin
   def:= TPHPDef(IDMap[IntToStr(wurflID)]);
   if (def <> nil) then begin
     def.fid:= def.hid;
-    def.gid:= def.fid div 64;
+    def.gid:= def.fid div 256;
     Result:= true;
-    phpHID:= 'H'+IntToStr(def.hid);
-    phpFID:= 'F'+IntToStr(def.fid)+'.php';
-    phpGID:= 'G'+IntToStr(def.gid);
+    phpHID:= Format('H%x', [def.hid]);
+    phpFID:= Format('F%4.4x.php', [def.fid]);
+    phpGID:= Format('G%2.2x', [def.gid]);
     phpPath:= phpGID+'/'+phpFID;
   end;
 end;
@@ -346,7 +346,7 @@ begin
   end;
   outDef:= PHP_BEGIN;
   if (not def.shared) then begin
-    outDef:= outDef + PHP_COPYRIGHT;
+    outDef:= outDef;
   end;
   prn:= dev.Fall_back;
   tmp1:= phpHID;
@@ -392,7 +392,7 @@ var
 begin
   AssignFile(f, OUT_HANDSETPATH+Format(PHP_REGFILE, [part]));
   rewrite(f);
-  writeln(f, '<?php');
+  write(f, PHP_BEGIN);
   getPHPID(wurfl.getRoot.id, phpHID, phpFID, phpGID, phpPath);
   writeln(f, 'global $handset_registry;');
   if (not append) then begin
@@ -413,16 +413,16 @@ begin
     h2:= h1.codeHandset;
     if (h2.dev.Fall_back<>'root') then begin
       getPHPID(h2.id, phpHID, phpFID, phpGID, phpPath);
-      writeln(f, Format(' array("%s","%s","%s",%s),', [encode(hi.userAgent), phpHID, phpPath, BoolToStr(hi.endSearch)]));
+      writeln(f, Format('array("%s","%s","%s",%s),', [encode(hi.userAgent), phpHID, phpPath, BoolToStr(hi.endSearch)]));
     end;
   end;
   if (not append) then begin
-    writeln(f, '  );');
+    writeln(f, ');');
   end
   else begin
-    writeln(f, '  ));');
+    writeln(f, '));');
   end;
-  writeln(f, '?>');
+  writeln(f, PHP_END);
   CloseFile(f);
 end;
 
@@ -496,15 +496,15 @@ begin
   exportRegistryPart('def', sezDef, 0, sezDef.Count-1, true);
   AssignFile(f, OUT_HANDSETPATH+PHP_REGINDEX);
   rewrite(f);
-  writeln(f, '<?php');
+  write(f, PHP_BEGIN);
   writeln(f, 'global $handset_index;');
   writeln(f, '$handset_index = array(');
   for i:= 0 to index.Count-1 do begin
     hi:= THandsetListElement(index[i]);
-    writeln(f, Format(' array("%s","%s"),', [encode(hi.userAgent), Format(PHP_REGFILE, [IntToStr(i)])]));
+    writeln(f, Format('array("%s","%s"),', [encode(hi.userAgent), Format(PHP_REGFILE, [IntToStr(i)])]));
   end;
-  writeln(f, '  );');
-  writeln(f, '?>');
+  writeln(f, ');');
+  writeln(f, PHP_END);
   CloseFile(f);
   index.Free;
   sezDef.Free;
