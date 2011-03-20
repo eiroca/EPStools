@@ -24,7 +24,7 @@ unit uElab;
 interface
 
 uses
-  Classes, uWURFL;
+  Classes, uWURFL, uWURFL2PHP, uWURFL2TXT;
 
 type
   THandsetElab = class(TWURFL)

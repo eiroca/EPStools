@@ -2,7 +2,7 @@ object fmMain: TfmMain
   Left = 185
   Top = 159
   Caption = 'WURFL2PHP2006'
-  ClientHeight = 632
+  ClientHeight = 652
   ClientWidth = 650
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -17,13 +17,13 @@ object fmMain: TfmMain
   TextHeight = 13
   object sbStatus: TStatusBar
     Left = 0
-    Top = 613
+    Top = 633
     Width = 650
     Height = 19
     Panels = <>
     SimplePanel = True
     SimpleText = 'Status'
-    ExplicitTop = 593
+    ExplicitTop = 613
   end
   object MainMenu1: TMainMenu
     Left = 67

@@ -27,7 +27,9 @@ uses
   FAbout in '..\..\library\mirror\FAbout.pas' {fmAbout},
   FMain in 'gui\FMain.pas' {fmMain},
   uWURFL in '..\..\library\src\lib\uWURFL.pas',
-  wurfl in '..\..\library\src\lib\wurfl.pas';
+  wurfl in '..\..\library\src\lib\wurfl.pas',
+  uWURFL2PHP in '..\..\library\src\lib\uWURFL2PHP.pas',
+  uWURFL2TXT in '..\..\library\src\lib\uWURFL2TXT.pas';
 
 {$R *.res}
 

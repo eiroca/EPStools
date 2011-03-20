@@ -24,7 +24,7 @@ unit FMain;
 interface
 
 uses
-  uWURFL,
+  uWURFL, uWURFL2PHP, uWURFL2TXT,
   Forms, Menus, Classes, Controls, ComCtrls, StdCtrls;
 
 type
@@ -184,13 +184,21 @@ begin
 end;
 
 procedure TfmMain.miWURFL2PHPClick(Sender: TObject);
+var
+  exporter: TPHPExporter;
 begin
-  wurfl.exportPHP(NotifyMessage);
+  exporter:= TPHPExporter.Create(wurfl, NotifyMessage);
+  exporter.Export;
+  exporter.Free;
 end;
 
 procedure TfmMain.miWURFL2TXTClick(Sender: TObject);
+var
+  exporter: TTXTExporter;
 begin
-  wurfl.exportTXT(NotifyMessage);
+  exporter:= TTXTExporter.Create(wurfl, NotifyMessage);
+  exporter.Export;
+  exporter.Free;
 end;
 
 procedure TfmMain.miWURFL2DBClick(Sender: TObject);

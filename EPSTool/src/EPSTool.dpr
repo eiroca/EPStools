@@ -34,7 +34,9 @@ uses
   wurfl in '..\..\library\src\lib\wurfl.pas',
   uWURFL in '..\..\library\src\lib\uWURFL.pas',
   FAbout in '..\..\library\mirror\FAbout.pas' {fmAbout},
-  eHashList in '..\..\library\mirror\eHashList.pas';
+  eHashList in '..\..\library\mirror\eHashList.pas',
+  uWURFL2TXT in '..\..\library\src\lib\uWURFL2TXT.pas',
+  uWURFL2PHP in '..\..\library\src\lib\uWURFL2PHP.pas';
 
 {$R *.res}
 
