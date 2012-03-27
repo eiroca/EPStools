@@ -25,8 +25,8 @@ object fmMain: TfmMain
     SimpleText = 'Status'
   end
   object Button1: TButton
-    Left = 168
-    Top = 128
+    Left = 40
+    Top = 80
     Width = 75
     Height = 25
     Caption = 'Button1'
@@ -34,8 +34,8 @@ object fmMain: TfmMain
     OnClick = Button1Click
   end
   object Button2: TButton
-    Left = 168
-    Top = 168
+    Left = 40
+    Top = 120
     Width = 75
     Height = 25
     Caption = 'Button1'

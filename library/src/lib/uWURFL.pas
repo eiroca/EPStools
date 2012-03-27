@@ -86,8 +86,8 @@ type
 implementation
 
 const
-  PLACEHOLDER_STR = 'DO_NOT_MATCH_';
-  NONUNIQUE_STR = 'NON_UNIQUE_';
+  PLACEHOLDER_STR : WideString = 'DO_NOT_MATCH_';
+  NONUNIQUE_STR : WideString = 'NON_UNIQUE_';
 
 
 constructor THandset.Create(aWurfl: TWURFL; aid: integer; aDev: IXMLDeviceType);

@@ -253,6 +253,11 @@ begin
   NotifyMessage('Device Registry export done.');
 end;
 
+const
+
+ sNAME: WideString = 'name';
+ sNAMESPACE: WideString = 'namespace';
+
 procedure TPHPExporter.setupDevice(id: integer; var seqID: integer);
 var
   i, j: integer;
@@ -282,7 +287,7 @@ begin
     for j:= 0 to grp.Count-1 do begin
       cap:= grp.Capability[j];
       tmp1:= grp.Id+'_'+cap.Name;
-      if (pos('name', cap.Name) > 0 ) and (pos('namespace', cap.Name) = 0) then begin
+      if (pos(sNAME, cap.Name) > 0 ) and (pos(sNAMESPACE, cap.Name) = 0) then begin
         tmp2:= '"' + cap.Value + '"';
       end
       else if ((cap.Value='false') or (cap.Value='true')) then begin
