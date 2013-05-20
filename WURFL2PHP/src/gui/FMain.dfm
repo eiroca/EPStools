@@ -23,7 +23,6 @@ object fmMain: TfmMain
     Panels = <>
     SimplePanel = True
     SimpleText = 'Status'
-    ExplicitTop = 613
   end
   object MainMenu1: TMainMenu
     Left = 67
