@@ -204,7 +204,7 @@ begin
   def:= getDef(id);
   getPHPID(id, phpHID, phpFID, phpGID, phpPath);
   try
-    mkDir(OUT_HANDSETPATH + phpGID);
+    mkDir(BasePath + phpGID);
   except
   end;
   outDef:= PHP_BEGIN;
@@ -225,7 +225,7 @@ begin
   outDef:= outDef + def.data;
   outDef:= outDef + PHP_CLASS_CLOSE;
   outDef:= outDef + PHP_END;
-  AssignFile(f, OUT_HANDSETPATH + phpPath);
+  AssignFile(f, BasePath + phpPath);
   Rewrite(f);
   writeln(f, outDef);
   CloseFile(f);
@@ -254,8 +254,8 @@ end;
 
 const
 
-  sNAME: WideString = 'name';
-  sNAMESPACE: WideString = 'namespace';
+  sNAME: string = 'name';
+  sNAMESPACE: string = 'namespace';
 
 procedure TPHPExporter.setupDevice(id: integer; var seqID: integer);
 var
@@ -316,7 +316,7 @@ var
   phpHID, phpFID, phpGID, phpPath: string;
   dev: IXMLDeviceType;
 begin
-  AssignFile(f, OUT_HANDSETPATH + Format(PHP_REGFILE, [part]));
+  AssignFile(f, BasePath + Format(PHP_REGFILE, [part]));
   Rewrite(f);
   write(f, PHP_BEGIN);
   getPHPID(wurfl.getRoot.id, phpHID, phpFID, phpGID, phpPath);
@@ -421,7 +421,7 @@ begin
     index.Add(hi);
   end;
   exportRegistryPart('def', sezDef, 0, sezDef.Count - 1, true);
-  AssignFile(f, OUT_HANDSETPATH + PHP_REGINDEX);
+  AssignFile(f, BasePath + PHP_REGINDEX);
   Rewrite(f);
   write(f, PHP_BEGIN);
   writeln(f, 'global $handset_index;');

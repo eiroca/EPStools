@@ -109,7 +109,7 @@ begin
     end;
     def[dev.id]:= h;
   end;
-  AssignFile(f, OUT_HANDSETPATH + 'hadset.txt');
+  AssignFile(f, BasePath + 'hadset.txt');
   rewrite(f);
   tmp:= '"ID";"ParentID";"userAgent"';
   for i:= 0 to propList.Count - 1 do begin

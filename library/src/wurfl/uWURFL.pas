@@ -55,9 +55,6 @@ type
     destructor Destroy; override;
   end;
 
-const
-  OUT_HANDSETPATH = 'export\';
-
 type
 
   // WURFL exporter base class
@@ -67,7 +64,9 @@ type
   private
     FWURFL: TWURFL;
     FCallBack: TCallBack;
+    FBasePath: string;
   protected
+    property BasePath: string read FBasePath write FBasePath;
     property wurfl: TWURFL read FWURFL;
     property CallBack: TCallBack read FCallBack;
   protected
@@ -78,14 +77,14 @@ type
     procedure Epilogue; virtual; abstract;
   public
     constructor Create(const wurlf: TWURFL; aCallBack: TCallBack);
-    procedure Export; virtual;
+    procedure Export(const path: string); virtual;
   end;
 
 implementation
 
 const
-  PLACEHOLDER_STR: WideString = 'DO_NOT_MATCH_';
-  NONUNIQUE_STR: WideString = 'NON_UNIQUE_';
+  PLACEHOLDER_STR: string = 'DO_NOT_MATCH_';
+  NONUNIQUE_STR: string = 'NON_UNIQUE_';
 
 constructor THandset.Create(aWurfl: TWURFL; aid: integer; aDev: IXMLDeviceType);
 begin
@@ -249,10 +248,11 @@ begin
   if Assigned(FCallBack) then FCallBack(aMsg);
 end;
 
-procedure TWURFLExporter.Export;
+procedure TWURFLExporter.Export(const path: string);
 var
   i: integer;
 begin
+  BasePath:= path;
   Prologue;
   for i:= 0 to wurfl.wurflxml.Devices.Count - 1 do begin
     ExportDevice(i);

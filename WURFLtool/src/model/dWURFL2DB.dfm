@@ -1,13 +1,13 @@
 object dmWURFL2DB: TdmWURFL2DB
   OldCreateOrder = False
-  OnCreate = DataModuleCreate
-  Height = 150
-  Width = 215
+  Height = 184
+  Width = 387
   object DBDevice: TADOConnection
+    Connected = True
     ConnectionString = 
-      'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=G:\develop\shared\d' +
-      'elphi\ServerApps\tools\EPSTool\bin\wurfl\db\wurfl.mdb;Persist Se' +
-      'curity Info=False'
+      'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=S:\develop\projects' +
+      '\public\delphi\EPStools\WURFLtool\data\wurfl.mdb;Persist Securit' +
+      'y Info=False'
     LoginPrompt = False
     Mode = cmShareDenyNone
     Provider = 'Microsoft.Jet.OLEDB.4.0'
@@ -18,8 +18,8 @@ object dmWURFL2DB: TdmWURFL2DB
     Connection = DBDevice
     CursorType = ctStatic
     TableName = 'wurflDevice'
-    Left = 51
-    Top = 5
+    Left = 43
+    Top = 77
     object tbDeviceCodDev: TAutoIncField
       FieldName = 'CodDev'
       ReadOnly = True
@@ -40,8 +40,8 @@ object dmWURFL2DB: TdmWURFL2DB
     Connection = DBDevice
     CursorType = ctStatic
     TableName = 'wurflGroup'
-    Left = 91
-    Top = 5
+    Left = 107
+    Top = 77
     object tbGroupCodGrp: TAutoIncField
       FieldName = 'CodGrp'
       ReadOnly = True
@@ -55,8 +55,8 @@ object dmWURFL2DB: TdmWURFL2DB
     Connection = DBDevice
     CursorType = ctStatic
     TableName = 'wurflProperties'
-    Left = 126
-    Top = 5
+    Left = 190
+    Top = 77
     object tbPropertiesCodPro: TAutoIncField
       FieldName = 'CodPro'
       ReadOnly = True
@@ -73,8 +73,8 @@ object dmWURFL2DB: TdmWURFL2DB
     Connection = DBDevice
     CursorType = ctStatic
     TableName = 'wurflDefinition'
-    Left = 161
-    Top = 5
+    Left = 273
+    Top = 77
     object tbDefinitionCodDev: TIntegerField
       FieldName = 'CodDev'
     end

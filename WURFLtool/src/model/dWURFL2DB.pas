@@ -24,29 +24,25 @@ interface
 uses
   uWURFL, Classes, Forms, DB, ADODB, Variants, wurfl, SysUtils;
 
-const
-  DBPATH = 'wurfl\db\wurfl.mdb';
-
 type
   TdmWURFL2DB = class(TDataModule)
     DBDevice: TADOConnection;
     tbDevice: TADOTable;
+    tbGroup: TADOTable;
+    tbProperties: TADOTable;
+    tbDefinition: TADOTable;
     tbDeviceCodDev: TAutoIncField;
     tbDeviceCodParent: TIntegerField;
     tbDeviceID: TWideStringField;
     tbDeviceUserAgent: TWideStringField;
-    tbGroup: TADOTable;
     tbGroupCodGrp: TAutoIncField;
     tbGroupName: TWideStringField;
-    tbProperties: TADOTable;
     tbPropertiesCodPro: TAutoIncField;
     tbPropertiesCodGrp: TIntegerField;
     tbPropertiesName: TWideStringField;
-    tbDefinition: TADOTable;
     tbDefinitionCodDev: TIntegerField;
     tbDefinitionCodPro: TIntegerField;
     tbDefinitionValue: TWideStringField;
-    procedure DataModuleCreate(Sender: TObject);
   private
     { Private declarations }
     function getDeviceID(const ID: string): integer;
@@ -56,6 +52,7 @@ type
   public
     { Public declarations }
     procedure Run(wurfl: TWURFL);
+    procedure OpenDB(const path: string);
   end;
 
 var
@@ -255,13 +252,10 @@ begin
   DBDevice.Connected:= false;
 end;
 
-procedure TdmWURFL2DB.DataModuleCreate(Sender: TObject);
-var
-  path: string;
+procedure TdmWURFL2DB.OpenDB(const path: string);
 begin
-  path:= extractFilePath(Application.ExeName);
-  DBDevice.ConnectionString:= 'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=' + path + '\' + DBPATH
-    + ';Persist Security Info=False';
+  DBDevice.ConnectionString:=
+    Format('Provider=Microsoft.Jet.OLEDB.4.0;Data Source=%s;Persist Security Info=False', [path]);
 end;
 
 end.

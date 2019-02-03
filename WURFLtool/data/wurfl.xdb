@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xdb="http://www.borland.com/schemas/delphi/10.0/XMLDataBinding">
+	<xs:element name="wurfl" type="wurflType"/>
+	<xs:complexType name="wurflType">
+		<xs:annotation>
+			<xs:appinfo xdb:docElement="wurfl"/>
+		</xs:annotation>
+		<sequence xmlns="http://www.w3.org/2001/XMLSchema">
+			<xs:element name="version" type="versionType"/>
+			<xs:element name="devices" type="devicesType"/>
+		</sequence>
+	</xs:complexType>
+	<xs:complexType name="versionType">
+		<sequence xmlns="http://www.w3.org/2001/XMLSchema">
+			<xs:element name="ver" type="xs:string"/>
+			<xs:element name="last_updated" type="xs:string"/>
+			<xs:element name="official_url" type="xs:string"/>
+			<xs:element name="maintainers" type="maintainersType"/>
+			<xs:element name="authors" type="authorsType"/>
+			<xs:element name="statement" type="xs:string"/>
+		</sequence>
+	</xs:complexType>
+	<xs:complexType name="maintainersType">
+		<sequence xmlns="http://www.w3.org/2001/XMLSchema">
+			<xs:element name="maintainer" type="maintainerType"/>
+		</sequence>
+	</xs:complexType>
+	<xs:complexType name="maintainerType">
+		<xs:attribute name="name" type="xs:string"/>
+		<xs:attribute name="email" type="xs:string"/>
+		<xs:attribute name="home_page" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="authorsType">
+		<sequence xmlns="http://www.w3.org/2001/XMLSchema">
+			<xs:element name="author" type="authorType"/>
+		</sequence>
+	</xs:complexType>
+	<xs:complexType name="authorType">
+		<xs:attribute name="name" type="xs:string"/>
+		<xs:attribute name="email" type="xs:string"/>
+		<xs:attribute name="home_page" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="devicesType">
+		<sequence xmlns="http://www.w3.org/2001/XMLSchema">
+			<xs:element name="device" type="deviceType" maxOccurs="unbounded"/>
+		</sequence>
+	</xs:complexType>
+	<xs:complexType name="deviceType">
+		<sequence xmlns="http://www.w3.org/2001/XMLSchema">
+			<xs:element name="group" type="groupType" maxOccurs="unbounded"/>
+		</sequence>
+		<xs:attribute name="id" type="xs:string"/>
+		<xs:attribute name="user_agent" type="xs:string"/>
+		<xs:attribute name="fall_back" type="xs:string"/>
+		<xs:attribute name="actual_device_root" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="groupType">
+		<sequence xmlns="http://www.w3.org/2001/XMLSchema">
+			<xs:element name="capability" type="capabilityType" maxOccurs="unbounded"/>
+		</sequence>
+		<xs:attribute name="id" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="capabilityType">
+		<xs:attribute name="name" type="xs:string"/>
+		<xs:attribute name="value" type="xs:string"/>
+	</xs:complexType>
+	<xs:complexType name="deviceType2">
+		<xs:attribute name="id" type="xs:string"/>
+		<xs:attribute name="user_agent" type="xs:string"/>
+		<xs:attribute name="fall_back" type="xs:string"/>
+		<xs:attribute name="actual_device_root" type="xs:string"/>
+	</xs:complexType>
+</xs:schema>

@@ -1,17 +1,19 @@
-{ *************************************************************************** }
+{ ********************************************************* }
 { }
 { XML Data Binding }
 { }
-{ Generated on: 24/11/2003 13.39.50 }
+{ Generated on: 03/02/2019 14:30:48 }
+{ Generated from: S:\data\dataset\wurfl\wurfl.xml }
+{ Settings stored in: S:\data\dataset\wurfl\wurfl.xdb }
 { }
-{ *************************************************************************** }
+{ ********************************************************* }
 
 unit wurfl;
 
 interface
 
 uses
-  xmldom, XMLDoc, XMLIntf;
+  Xml.xmldom, Xml.XMLDoc, Xml.XMLIntf;
 
 type
 
@@ -23,17 +25,16 @@ type
   IXMLMaintainerType = interface;
   IXMLAuthorsType = interface;
   IXMLAuthorType = interface;
-  IXMLContributorsType = interface;
-  IXMLContributorType = interface;
   IXMLDevicesType = interface;
   IXMLDeviceType = interface;
   IXMLGroupType = interface;
   IXMLCapabilityType = interface;
+  IXMLDeviceType2 = interface;
 
   { IXMLWurflType }
 
   IXMLWurflType = interface(IXMLNode)
-    ['{BFA2CA7A-CF62-4D84-9F2D-B820BC2E6C16}']
+    ['{647D1953-C420-4775-B316-58ABE5380B4D}']
     { Property Accessors }
     function Get_Version: IXMLVersionType;
     function Get_Devices: IXMLDevicesType;
@@ -45,33 +46,31 @@ type
   { IXMLVersionType }
 
   IXMLVersionType = interface(IXMLNode)
-    ['{E8288F10-7C36-43B4-8186-BAFA3A6A56AD}']
+    ['{45EA3C3D-E9CA-4746-ABB0-C6DE2A1E1CDE}']
     { Property Accessors }
-    function Get_Ver: WideString;
-    function Get_Last_updated: WideString;
-    function Get_Official_url: WideString;
+    function Get_Ver: UnicodeString;
+    function Get_Last_updated: UnicodeString;
+    function Get_Official_url: UnicodeString;
     function Get_Maintainers: IXMLMaintainersType;
     function Get_Authors: IXMLAuthorsType;
-    function Get_Contributors: IXMLContributorsType;
-    function Get_Statement: WideString;
-    procedure Set_Ver(Value: WideString);
-    procedure Set_Last_updated(Value: WideString);
-    procedure Set_Official_url(Value: WideString);
-    procedure Set_Statement(Value: WideString);
+    function Get_Statement: UnicodeString;
+    procedure Set_Ver(Value: UnicodeString);
+    procedure Set_Last_updated(Value: UnicodeString);
+    procedure Set_Official_url(Value: UnicodeString);
+    procedure Set_Statement(Value: UnicodeString);
     { Methods & Properties }
-    property Ver: WideString read Get_Ver write Set_Ver;
-    property Last_updated: WideString read Get_Last_updated write Set_Last_updated;
-    property Official_url: WideString read Get_Official_url write Set_Official_url;
+    property Ver: UnicodeString read Get_Ver write Set_Ver;
+    property Last_updated: UnicodeString read Get_Last_updated write Set_Last_updated;
+    property Official_url: UnicodeString read Get_Official_url write Set_Official_url;
     property Maintainers: IXMLMaintainersType read Get_Maintainers;
     property Authors: IXMLAuthorsType read Get_Authors;
-    property Contributors: IXMLContributorsType read Get_Contributors;
-    property Statement: WideString read Get_Statement write Set_Statement;
+    property Statement: UnicodeString read Get_Statement write Set_Statement;
   end;
 
   { IXMLMaintainersType }
 
   IXMLMaintainersType = interface(IXMLNode)
-    ['{7144E889-84A5-4610-9568-35C8F62948EB}']
+    ['{784A3BC0-900D-4E08-97A7-1A8BDF742EBE}']
     { Property Accessors }
     function Get_Maintainer: IXMLMaintainerType;
     { Methods & Properties }
@@ -81,79 +80,51 @@ type
   { IXMLMaintainerType }
 
   IXMLMaintainerType = interface(IXMLNode)
-    ['{9B323DCE-DBC3-4FB3-B084-962FD205756B}']
+    ['{E597D426-70EB-41C0-B645-05DEA7C06A4F}']
     { Property Accessors }
-    function Get_Email: WideString;
-    function Get_Home_page: WideString;
-    function Get_Name: WideString;
-    procedure Set_Email(Value: WideString);
-    procedure Set_Home_page(Value: WideString);
-    procedure Set_Name(Value: WideString);
+    function Get_Name: UnicodeString;
+    function Get_Email: UnicodeString;
+    function Get_Home_page: UnicodeString;
+    procedure Set_Name(Value: UnicodeString);
+    procedure Set_Email(Value: UnicodeString);
+    procedure Set_Home_page(Value: UnicodeString);
     { Methods & Properties }
-    property Email: WideString read Get_Email write Set_Email;
-    property Home_page: WideString read Get_Home_page write Set_Home_page;
-    property name: WideString read Get_Name write Set_Name;
+    property name: UnicodeString read Get_Name write Set_Name;
+    property Email: UnicodeString read Get_Email write Set_Email;
+    property Home_page: UnicodeString read Get_Home_page write Set_Home_page;
   end;
 
   { IXMLAuthorsType }
 
-  IXMLAuthorsType = interface(IXMLNodeCollection)
-    ['{ED7DDCC0-9504-48E8-8A89-7DBDD6F1D55E}']
+  IXMLAuthorsType = interface(IXMLNode)
+    ['{A81A23CD-3089-4664-81DD-FDE88DE6A50F}']
     { Property Accessors }
-    function Get_Author(Index: Integer): IXMLAuthorType;
+    function Get_Author: IXMLAuthorType;
     { Methods & Properties }
-    function Add: IXMLAuthorType;
-    function Insert(const Index: Integer): IXMLAuthorType;
-    property Author[index: Integer]: IXMLAuthorType read Get_Author; default;
+    property Author: IXMLAuthorType read Get_Author;
   end;
 
   { IXMLAuthorType }
 
   IXMLAuthorType = interface(IXMLNode)
-    ['{320F7E1F-1AA3-4AC3-92B5-2CE68E4E4787}']
+    ['{D56B551B-FB85-48FD-9D7C-9646A644AF9C}']
     { Property Accessors }
-    function Get_Name: WideString;
-    function Get_Email: WideString;
-    function Get_Home_page: WideString;
-    procedure Set_Name(Value: WideString);
-    procedure Set_Email(Value: WideString);
-    procedure Set_Home_page(Value: WideString);
+    function Get_Name: UnicodeString;
+    function Get_Email: UnicodeString;
+    function Get_Home_page: UnicodeString;
+    procedure Set_Name(Value: UnicodeString);
+    procedure Set_Email(Value: UnicodeString);
+    procedure Set_Home_page(Value: UnicodeString);
     { Methods & Properties }
-    property name: WideString read Get_Name write Set_Name;
-    property Email: WideString read Get_Email write Set_Email;
-    property Home_page: WideString read Get_Home_page write Set_Home_page;
-  end;
-
-  { IXMLContributorsType }
-
-  IXMLContributorsType = interface(IXMLNodeCollection)
-    ['{64D3B7E4-1E3F-4ACF-B4C0-0F1EA83EB5F8}']
-    { Property Accessors }
-    function Get_Contributor(Index: Integer): IXMLContributorType;
-    { Methods & Properties }
-    function Add: IXMLContributorType;
-    function Insert(const Index: Integer): IXMLContributorType;
-    property Contributor[index: Integer]: IXMLContributorType read Get_Contributor; default;
-  end;
-
-  { IXMLContributorType }
-
-  IXMLContributorType = interface(IXMLNode)
-    ['{108B724E-EEB2-43F4-A4F1-9EC1300EBE05}']
-    { Property Accessors }
-    function Get_Name: WideString;
-    function Get_Email: WideString;
-    procedure Set_Name(Value: WideString);
-    procedure Set_Email(Value: WideString);
-    { Methods & Properties }
-    property name: WideString read Get_Name write Set_Name;
-    property Email: WideString read Get_Email write Set_Email;
+    property name: UnicodeString read Get_Name write Set_Name;
+    property Email: UnicodeString read Get_Email write Set_Email;
+    property Home_page: UnicodeString read Get_Home_page write Set_Home_page;
   end;
 
   { IXMLDevicesType }
 
   IXMLDevicesType = interface(IXMLNodeCollection)
-    ['{9D679B00-2BC1-4564-9D18-0C15D85567DD}']
+    ['{EA44C6D2-5AEE-4F66-AE5B-A5C6FC434363}']
     { Property Accessors }
     function Get_Device(Index: Integer): IXMLDeviceType;
     { Methods & Properties }
@@ -165,56 +136,76 @@ type
   { IXMLDeviceType }
 
   IXMLDeviceType = interface(IXMLNodeCollection)
-    ['{30ADB7FD-EBC8-4578-AFF7-80C74F2A47C6}']
+    ['{1D9B5224-6B65-482E-A06D-AB1BA2E02664}']
     { Property Accessors }
-    function Get_Id: WideString;
-    function Get_Fall_back: WideString;
-    function Get_User_agent: WideString;
+    function Get_Id: UnicodeString;
+    function Get_User_agent: UnicodeString;
+    function Get_Fall_back: UnicodeString;
+    function Get_Actual_device_root: UnicodeString;
     function Get_Group(Index: Integer): IXMLGroupType;
-    procedure Set_Id(Value: WideString);
-    procedure Set_Fall_back(Value: WideString);
-    procedure Set_User_agent(Value: WideString);
-    function Get_Actual_device_root: WideString;
-    procedure Set_Actual_device_root(Value: WideString);
+    procedure Set_Id(Value: UnicodeString);
+    procedure Set_User_agent(Value: UnicodeString);
+    procedure Set_Fall_back(Value: UnicodeString);
+    procedure Set_Actual_device_root(Value: UnicodeString);
     { Methods & Properties }
     function Add: IXMLGroupType;
     function Insert(const Index: Integer): IXMLGroupType;
-    property Id: WideString read Get_Id write Set_Id;
-    property Fall_back: WideString read Get_Fall_back write Set_Fall_back;
-    property User_agent: WideString read Get_User_agent write Set_User_agent;
-    property Actual_device_root: WideString read Get_Actual_device_root
+    property Id: UnicodeString read Get_Id write Set_Id;
+    property User_agent: UnicodeString read Get_User_agent write Set_User_agent;
+    property Fall_back: UnicodeString read Get_Fall_back write Set_Fall_back;
+    property Actual_device_root: UnicodeString read Get_Actual_device_root
       write Set_Actual_device_root;
-
     property Group[index: Integer]: IXMLGroupType read Get_Group; default;
   end;
 
   { IXMLGroupType }
 
   IXMLGroupType = interface(IXMLNodeCollection)
-    ['{E8CA3F35-8865-409B-B801-EF499C745006}']
+    ['{E34521BC-9B52-4E7C-BC4B-18D017EF4659}']
     { Property Accessors }
-    function Get_Id: WideString;
+    function Get_Id: UnicodeString;
     function Get_Capability(Index: Integer): IXMLCapabilityType;
-    procedure Set_Id(Value: WideString);
+    procedure Set_Id(Value: UnicodeString);
     { Methods & Properties }
     function Add: IXMLCapabilityType;
     function Insert(const Index: Integer): IXMLCapabilityType;
-    property Id: WideString read Get_Id write Set_Id;
+    property Id: UnicodeString read Get_Id write Set_Id;
     property Capability[index: Integer]: IXMLCapabilityType read Get_Capability; default;
   end;
 
   { IXMLCapabilityType }
 
   IXMLCapabilityType = interface(IXMLNode)
-    ['{54F23BF1-5570-42E1-B46D-6F63847E8D0C}']
+    ['{6303A6ED-2C04-4FAC-AC40-674C357B0C4C}']
     { Property Accessors }
-    function Get_Name: WideString;
-    function Get_Value: WideString;
-    procedure Set_Name(Value: WideString);
-    procedure Set_Value(Value: WideString);
+    function Get_Name: UnicodeString;
+    function Get_Value: UnicodeString;
+    procedure Set_Name(Value: UnicodeString);
+    procedure Set_Value(Value: UnicodeString);
     { Methods & Properties }
-    property name: WideString read Get_Name write Set_Name;
-    property Value: WideString read Get_Value write Set_Value;
+    property name: UnicodeString read Get_Name write Set_Name;
+    property Value: UnicodeString read Get_Value write Set_Value;
+  end;
+
+  { IXMLDeviceType2 }
+
+  IXMLDeviceType2 = interface(IXMLNode)
+    ['{BA92D92E-C731-4D2E-A2CB-85EA1ABDB49A}']
+    { Property Accessors }
+    function Get_Id: UnicodeString;
+    function Get_User_agent: UnicodeString;
+    function Get_Fall_back: UnicodeString;
+    function Get_Actual_device_root: UnicodeString;
+    procedure Set_Id(Value: UnicodeString);
+    procedure Set_User_agent(Value: UnicodeString);
+    procedure Set_Fall_back(Value: UnicodeString);
+    procedure Set_Actual_device_root(Value: UnicodeString);
+    { Methods & Properties }
+    property Id: UnicodeString read Get_Id write Set_Id;
+    property User_agent: UnicodeString read Get_User_agent write Set_User_agent;
+    property Fall_back: UnicodeString read Get_Fall_back write Set_Fall_back;
+    property Actual_device_root: UnicodeString read Get_Actual_device_root
+      write Set_Actual_device_root;
   end;
 
   { Forward Decls }
@@ -225,12 +216,11 @@ type
   TXMLMaintainerType = class;
   TXMLAuthorsType = class;
   TXMLAuthorType = class;
-  TXMLContributorsType = class;
-  TXMLContributorType = class;
   TXMLDevicesType = class;
   TXMLDeviceType = class;
   TXMLGroupType = class;
   TXMLCapabilityType = class;
+  TXMLDeviceType2 = class;
 
   { TXMLWurflType }
 
@@ -248,17 +238,16 @@ type
   TXMLVersionType = class(TXMLNode, IXMLVersionType)
   protected
     { IXMLVersionType }
-    function Get_Ver: WideString;
-    function Get_Last_updated: WideString;
-    function Get_Official_url: WideString;
+    function Get_Ver: UnicodeString;
+    function Get_Last_updated: UnicodeString;
+    function Get_Official_url: UnicodeString;
     function Get_Maintainers: IXMLMaintainersType;
     function Get_Authors: IXMLAuthorsType;
-    function Get_Contributors: IXMLContributorsType;
-    function Get_Statement: WideString;
-    procedure Set_Ver(Value: WideString);
-    procedure Set_Last_updated(Value: WideString);
-    procedure Set_Official_url(Value: WideString);
-    procedure Set_Statement(Value: WideString);
+    function Get_Statement: UnicodeString;
+    procedure Set_Ver(Value: UnicodeString);
+    procedure Set_Last_updated(Value: UnicodeString);
+    procedure Set_Official_url(Value: UnicodeString);
+    procedure Set_Statement(Value: UnicodeString);
   public
     procedure AfterConstruction; override;
   end;
@@ -278,22 +267,20 @@ type
   TXMLMaintainerType = class(TXMLNode, IXMLMaintainerType)
   protected
     { IXMLMaintainerType }
-    function Get_Email: WideString;
-    function Get_Home_page: WideString;
-    function Get_Name: WideString;
-    procedure Set_Email(Value: WideString);
-    procedure Set_Home_page(Value: WideString);
-    procedure Set_Name(Value: WideString);
+    function Get_Name: UnicodeString;
+    function Get_Email: UnicodeString;
+    function Get_Home_page: UnicodeString;
+    procedure Set_Name(Value: UnicodeString);
+    procedure Set_Email(Value: UnicodeString);
+    procedure Set_Home_page(Value: UnicodeString);
   end;
 
   { TXMLAuthorsType }
 
-  TXMLAuthorsType = class(TXMLNodeCollection, IXMLAuthorsType)
+  TXMLAuthorsType = class(TXMLNode, IXMLAuthorsType)
   protected
     { IXMLAuthorsType }
-    function Get_Author(Index: Integer): IXMLAuthorType;
-    function Add: IXMLAuthorType;
-    function Insert(const Index: Integer): IXMLAuthorType;
+    function Get_Author: IXMLAuthorType;
   public
     procedure AfterConstruction; override;
   end;
@@ -303,35 +290,12 @@ type
   TXMLAuthorType = class(TXMLNode, IXMLAuthorType)
   protected
     { IXMLAuthorType }
-    function Get_Name: WideString;
-    function Get_Email: WideString;
-    function Get_Home_page: WideString;
-    procedure Set_Name(Value: WideString);
-    procedure Set_Email(Value: WideString);
-    procedure Set_Home_page(Value: WideString);
-  end;
-
-  { TXMLContributorsType }
-
-  TXMLContributorsType = class(TXMLNodeCollection, IXMLContributorsType)
-  protected
-    { IXMLContributorsType }
-    function Get_Contributor(Index: Integer): IXMLContributorType;
-    function Add: IXMLContributorType;
-    function Insert(const Index: Integer): IXMLContributorType;
-  public
-    procedure AfterConstruction; override;
-  end;
-
-  { TXMLContributorType }
-
-  TXMLContributorType = class(TXMLNode, IXMLContributorType)
-  protected
-    { IXMLContributorType }
-    function Get_Name: WideString;
-    function Get_Email: WideString;
-    procedure Set_Name(Value: WideString);
-    procedure Set_Email(Value: WideString);
+    function Get_Name: UnicodeString;
+    function Get_Email: UnicodeString;
+    function Get_Home_page: UnicodeString;
+    procedure Set_Name(Value: UnicodeString);
+    procedure Set_Email(Value: UnicodeString);
+    procedure Set_Home_page(Value: UnicodeString);
   end;
 
   { TXMLDevicesType }
@@ -351,15 +315,15 @@ type
   TXMLDeviceType = class(TXMLNodeCollection, IXMLDeviceType)
   protected
     { IXMLDeviceType }
-    function Get_Id: WideString;
-    function Get_Fall_back: WideString;
-    function Get_User_agent: WideString;
+    function Get_Id: UnicodeString;
+    function Get_User_agent: UnicodeString;
+    function Get_Fall_back: UnicodeString;
+    function Get_Actual_device_root: UnicodeString;
     function Get_Group(Index: Integer): IXMLGroupType;
-    procedure Set_Id(Value: WideString);
-    procedure Set_Fall_back(Value: WideString);
-    procedure Set_User_agent(Value: WideString);
-    function Get_Actual_device_root: WideString;
-    procedure Set_Actual_device_root(Value: WideString);
+    procedure Set_Id(Value: UnicodeString);
+    procedure Set_User_agent(Value: UnicodeString);
+    procedure Set_Fall_back(Value: UnicodeString);
+    procedure Set_Actual_device_root(Value: UnicodeString);
     function Add: IXMLGroupType;
     function Insert(const Index: Integer): IXMLGroupType;
   public
@@ -371,9 +335,9 @@ type
   TXMLGroupType = class(TXMLNodeCollection, IXMLGroupType)
   protected
     { IXMLGroupType }
-    function Get_Id: WideString;
+    function Get_Id: UnicodeString;
     function Get_Capability(Index: Integer): IXMLCapabilityType;
-    procedure Set_Id(Value: WideString);
+    procedure Set_Id(Value: UnicodeString);
     function Add: IXMLCapabilityType;
     function Insert(const Index: Integer): IXMLCapabilityType;
   public
@@ -385,37 +349,54 @@ type
   TXMLCapabilityType = class(TXMLNode, IXMLCapabilityType)
   protected
     { IXMLCapabilityType }
-    function Get_Name: WideString;
-    function Get_Value: WideString;
-    procedure Set_Name(Value: WideString);
-    procedure Set_Value(Value: WideString);
+    function Get_Name: UnicodeString;
+    function Get_Value: UnicodeString;
+    procedure Set_Name(Value: UnicodeString);
+    procedure Set_Value(Value: UnicodeString);
+  end;
+
+  { TXMLDeviceType2 }
+
+  TXMLDeviceType2 = class(TXMLNode, IXMLDeviceType2)
+  protected
+    { IXMLDeviceType2 }
+    function Get_Id: UnicodeString;
+    function Get_User_agent: UnicodeString;
+    function Get_Fall_back: UnicodeString;
+    function Get_Actual_device_root: UnicodeString;
+    procedure Set_Id(Value: UnicodeString);
+    procedure Set_User_agent(Value: UnicodeString);
+    procedure Set_Fall_back(Value: UnicodeString);
+    procedure Set_Actual_device_root(Value: UnicodeString);
   end;
 
   { Global Functions }
 
-function Getwurfl(Doc: IXMLDocument): IXMLWurflType;
-function Loadwurfl(const FileName: WideString): IXMLWurflType;
-function Newwurfl: IXMLWurflType;
+function GetWURFL(Doc: IXMLDocument): IXMLWurflType;
+function LoadWURFL(const FileName: string): IXMLWurflType;
+function NewWURFL: IXMLWurflType;
 
 const
   TargetNamespace = '';
 
 implementation
 
+uses
+  Xml.xmlutil;
+
 { Global Functions }
 
-function Getwurfl(Doc: IXMLDocument): IXMLWurflType;
+function GetWURFL(Doc: IXMLDocument): IXMLWurflType;
 begin
   Result:= Doc.GetDocBinding('wurfl', TXMLWurflType, TargetNamespace) as IXMLWurflType;
 end;
 
-function Loadwurfl(const FileName: WideString): IXMLWurflType;
+function LoadWURFL(const FileName: string): IXMLWurflType;
 begin
-  Result:= LoadXMLDocument(FileName).GetDocBinding('wurfl', TXMLWurflType, TargetNamespace)
-    as IXMLWurflType;
+  Result:= LoadXMLDocument(FileName).GetDocBinding('wurfl', TXMLWurflType, TargetNamespace) as IXMLWurflType;
 end;
 
-function Newwurfl: IXMLWurflType;
+function NewWURFL: IXMLWurflType;
 begin
   Result:= NewXMLDocument.GetDocBinding('wurfl', TXMLWurflType, TargetNamespace) as IXMLWurflType;
 end;
@@ -445,36 +426,35 @@ procedure TXMLVersionType.AfterConstruction;
 begin
   RegisterChildNode('maintainers', TXMLMaintainersType);
   RegisterChildNode('authors', TXMLAuthorsType);
-  RegisterChildNode('contributors', TXMLContributorsType);
   inherited;
 end;
 
-function TXMLVersionType.Get_Ver: WideString;
+function TXMLVersionType.Get_Ver: UnicodeString;
 begin
   Result:= ChildNodes['ver'].Text;
 end;
 
-procedure TXMLVersionType.Set_Ver(Value: WideString);
+procedure TXMLVersionType.Set_Ver(Value: UnicodeString);
 begin
   ChildNodes['ver'].NodeValue:= Value;
 end;
 
-function TXMLVersionType.Get_Last_updated: WideString;
+function TXMLVersionType.Get_Last_updated: UnicodeString;
 begin
   Result:= ChildNodes['last_updated'].Text;
 end;
 
-procedure TXMLVersionType.Set_Last_updated(Value: WideString);
+procedure TXMLVersionType.Set_Last_updated(Value: UnicodeString);
 begin
   ChildNodes['last_updated'].NodeValue:= Value;
 end;
 
-function TXMLVersionType.Get_Official_url: WideString;
+function TXMLVersionType.Get_Official_url: UnicodeString;
 begin
   Result:= ChildNodes['official_url'].Text;
 end;
 
-procedure TXMLVersionType.Set_Official_url(Value: WideString);
+procedure TXMLVersionType.Set_Official_url(Value: UnicodeString);
 begin
   ChildNodes['official_url'].NodeValue:= Value;
 end;
@@ -489,17 +469,12 @@ begin
   Result:= ChildNodes['authors'] as IXMLAuthorsType;
 end;
 
-function TXMLVersionType.Get_Contributors: IXMLContributorsType;
-begin
-  Result:= ChildNodes['contributors'] as IXMLContributorsType;
-end;
-
-function TXMLVersionType.Get_Statement: WideString;
+function TXMLVersionType.Get_Statement: UnicodeString;
 begin
   Result:= ChildNodes['statement'].Text;
 end;
 
-procedure TXMLVersionType.Set_Statement(Value: WideString);
+procedure TXMLVersionType.Set_Statement(Value: UnicodeString);
 begin
   ChildNodes['statement'].NodeValue:= Value;
 end;
@@ -519,34 +494,34 @@ end;
 
 { TXMLMaintainerType }
 
-function TXMLMaintainerType.Get_Email: WideString;
-begin
-  Result:= AttributeNodes['email'].Text;
-end;
-
-procedure TXMLMaintainerType.Set_Email(Value: WideString);
-begin
-  SetAttribute('email', Value);
-end;
-
-function TXMLMaintainerType.Get_Home_page: WideString;
-begin
-  Result:= AttributeNodes['home_page'].Text;
-end;
-
-procedure TXMLMaintainerType.Set_Home_page(Value: WideString);
-begin
-  SetAttribute('home_page', Value);
-end;
-
-function TXMLMaintainerType.Get_Name: WideString;
+function TXMLMaintainerType.Get_Name: UnicodeString;
 begin
   Result:= AttributeNodes['name'].Text;
 end;
 
-procedure TXMLMaintainerType.Set_Name(Value: WideString);
+procedure TXMLMaintainerType.Set_Name(Value: UnicodeString);
 begin
   SetAttribute('name', Value);
+end;
+
+function TXMLMaintainerType.Get_Email: UnicodeString;
+begin
+  Result:= AttributeNodes['email'].Text;
+end;
+
+procedure TXMLMaintainerType.Set_Email(Value: UnicodeString);
+begin
+  SetAttribute('email', Value);
+end;
+
+function TXMLMaintainerType.Get_Home_page: UnicodeString;
+begin
+  Result:= AttributeNodes['home_page'].Text;
+end;
+
+procedure TXMLMaintainerType.Set_Home_page(Value: UnicodeString);
+begin
+  SetAttribute('home_page', Value);
 end;
 
 { TXMLAuthorsType }
@@ -554,103 +529,44 @@ end;
 procedure TXMLAuthorsType.AfterConstruction;
 begin
   RegisterChildNode('author', TXMLAuthorType);
-  ItemTag:= 'author';
-  ItemInterface:= IXMLAuthorType;
   inherited;
 end;
 
-function TXMLAuthorsType.Get_Author(Index: Integer): IXMLAuthorType;
+function TXMLAuthorsType.Get_Author: IXMLAuthorType;
 begin
-  Result:= List[index] as IXMLAuthorType;
-end;
-
-function TXMLAuthorsType.Add: IXMLAuthorType;
-begin
-  Result:= AddItem(-1) as IXMLAuthorType;
-end;
-
-function TXMLAuthorsType.Insert(const Index: Integer): IXMLAuthorType;
-begin
-  Result:= AddItem(index) as IXMLAuthorType;
+  Result:= ChildNodes['author'] as IXMLAuthorType;
 end;
 
 { TXMLAuthorType }
 
-function TXMLAuthorType.Get_Name: WideString;
+function TXMLAuthorType.Get_Name: UnicodeString;
 begin
   Result:= AttributeNodes['name'].Text;
 end;
 
-procedure TXMLAuthorType.Set_Name(Value: WideString);
+procedure TXMLAuthorType.Set_Name(Value: UnicodeString);
 begin
   SetAttribute('name', Value);
 end;
 
-function TXMLAuthorType.Get_Email: WideString;
+function TXMLAuthorType.Get_Email: UnicodeString;
 begin
   Result:= AttributeNodes['email'].Text;
 end;
 
-procedure TXMLAuthorType.Set_Email(Value: WideString);
+procedure TXMLAuthorType.Set_Email(Value: UnicodeString);
 begin
   SetAttribute('email', Value);
 end;
 
-function TXMLAuthorType.Get_Home_page: WideString;
+function TXMLAuthorType.Get_Home_page: UnicodeString;
 begin
   Result:= AttributeNodes['home_page'].Text;
 end;
 
-procedure TXMLAuthorType.Set_Home_page(Value: WideString);
+procedure TXMLAuthorType.Set_Home_page(Value: UnicodeString);
 begin
   SetAttribute('home_page', Value);
-end;
-
-{ TXMLContributorsType }
-
-procedure TXMLContributorsType.AfterConstruction;
-begin
-  RegisterChildNode('contributor', TXMLContributorType);
-  ItemTag:= 'contributor';
-  ItemInterface:= IXMLContributorType;
-  inherited;
-end;
-
-function TXMLContributorsType.Get_Contributor(Index: Integer): IXMLContributorType;
-begin
-  Result:= List[index] as IXMLContributorType;
-end;
-
-function TXMLContributorsType.Add: IXMLContributorType;
-begin
-  Result:= AddItem(-1) as IXMLContributorType;
-end;
-
-function TXMLContributorsType.Insert(const Index: Integer): IXMLContributorType;
-begin
-  Result:= AddItem(index) as IXMLContributorType;
-end;
-
-{ TXMLContributorType }
-
-function TXMLContributorType.Get_Name: WideString;
-begin
-  Result:= AttributeNodes['name'].Text;
-end;
-
-procedure TXMLContributorType.Set_Name(Value: WideString);
-begin
-  SetAttribute('name', Value);
-end;
-
-function TXMLContributorType.Get_Email: WideString;
-begin
-  Result:= AttributeNodes['email'].Text;
-end;
-
-procedure TXMLContributorType.Set_Email(Value: WideString);
-begin
-  SetAttribute('email', Value);
 end;
 
 { TXMLDevicesType }
@@ -688,42 +604,42 @@ begin
   inherited;
 end;
 
-function TXMLDeviceType.Get_Id: WideString;
+function TXMLDeviceType.Get_Id: UnicodeString;
 begin
   Result:= AttributeNodes['id'].Text;
 end;
 
-procedure TXMLDeviceType.Set_Id(Value: WideString);
+procedure TXMLDeviceType.Set_Id(Value: UnicodeString);
 begin
   SetAttribute('id', Value);
 end;
 
-function TXMLDeviceType.Get_Fall_back: WideString;
-begin
-  Result:= AttributeNodes['fall_back'].Text;
-end;
-
-function TXMLDeviceType.Get_Actual_device_root: WideString;
-begin
-  Result:= AttributeNodes['actual_device_root'].Text;
-end;
-
-procedure TXMLDeviceType.Set_Fall_back(Value: WideString);
-begin
-  SetAttribute('fall_back', Value);
-end;
-
-function TXMLDeviceType.Get_User_agent: WideString;
+function TXMLDeviceType.Get_User_agent: UnicodeString;
 begin
   Result:= AttributeNodes['user_agent'].Text;
 end;
 
-procedure TXMLDeviceType.Set_User_agent(Value: WideString);
+procedure TXMLDeviceType.Set_User_agent(Value: UnicodeString);
 begin
   SetAttribute('user_agent', Value);
 end;
 
-procedure TXMLDeviceType.Set_Actual_device_root(Value: WideString);
+function TXMLDeviceType.Get_Fall_back: UnicodeString;
+begin
+  Result:= AttributeNodes['fall_back'].Text;
+end;
+
+procedure TXMLDeviceType.Set_Fall_back(Value: UnicodeString);
+begin
+  SetAttribute('fall_back', Value);
+end;
+
+function TXMLDeviceType.Get_Actual_device_root: UnicodeString;
+begin
+  Result:= AttributeNodes['actual_device_root'].Text;
+end;
+
+procedure TXMLDeviceType.Set_Actual_device_root(Value: UnicodeString);
 begin
   SetAttribute('actual_device_root', Value);
 end;
@@ -753,12 +669,12 @@ begin
   inherited;
 end;
 
-function TXMLGroupType.Get_Id: WideString;
+function TXMLGroupType.Get_Id: UnicodeString;
 begin
   Result:= AttributeNodes['id'].Text;
 end;
 
-procedure TXMLGroupType.Set_Id(Value: WideString);
+procedure TXMLGroupType.Set_Id(Value: UnicodeString);
 begin
   SetAttribute('id', Value);
 end;
@@ -780,24 +696,66 @@ end;
 
 { TXMLCapabilityType }
 
-function TXMLCapabilityType.Get_Name: WideString;
+function TXMLCapabilityType.Get_Name: UnicodeString;
 begin
   Result:= AttributeNodes['name'].Text;
 end;
 
-procedure TXMLCapabilityType.Set_Name(Value: WideString);
+procedure TXMLCapabilityType.Set_Name(Value: UnicodeString);
 begin
   SetAttribute('name', Value);
 end;
 
-function TXMLCapabilityType.Get_Value: WideString;
+function TXMLCapabilityType.Get_Value: UnicodeString;
 begin
   Result:= AttributeNodes['value'].Text;
 end;
 
-procedure TXMLCapabilityType.Set_Value(Value: WideString);
+procedure TXMLCapabilityType.Set_Value(Value: UnicodeString);
 begin
   SetAttribute('value', Value);
+end;
+
+{ TXMLDeviceType2 }
+
+function TXMLDeviceType2.Get_Id: UnicodeString;
+begin
+  Result:= AttributeNodes['id'].Text;
+end;
+
+procedure TXMLDeviceType2.Set_Id(Value: UnicodeString);
+begin
+  SetAttribute('id', Value);
+end;
+
+function TXMLDeviceType2.Get_User_agent: UnicodeString;
+begin
+  Result:= AttributeNodes['user_agent'].Text;
+end;
+
+procedure TXMLDeviceType2.Set_User_agent(Value: UnicodeString);
+begin
+  SetAttribute('user_agent', Value);
+end;
+
+function TXMLDeviceType2.Get_Fall_back: UnicodeString;
+begin
+  Result:= AttributeNodes['fall_back'].Text;
+end;
+
+procedure TXMLDeviceType2.Set_Fall_back(Value: UnicodeString);
+begin
+  SetAttribute('fall_back', Value);
+end;
+
+function TXMLDeviceType2.Get_Actual_device_root: UnicodeString;
+begin
+  Result:= AttributeNodes['actual_device_root'].Text;
+end;
+
+procedure TXMLDeviceType2.Set_Actual_device_root(Value: UnicodeString);
+begin
+  SetAttribute('actual_device_root', Value);
 end;
 
 end.
