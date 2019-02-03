@@ -1,9 +1,9 @@
 object fmMain: TfmMain
   Left = 185
   Top = 159
-  Caption = 'EPS Manager'
-  ClientHeight = 552
-  ClientWidth = 650
+  Caption = 'EPS Tool'
+  ClientHeight = 184
+  ClientWidth = 419
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,39 +12,22 @@ object fmMain: TfmMain
   Font.Style = []
   Menu = MainMenu1
   OldCreateOrder = False
-  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object sbStatus: TStatusBar
     Left = 0
-    Top = 533
-    Width = 650
+    Top = 165
+    Width = 419
     Height = 19
     Panels = <>
     SimplePanel = True
     SimpleText = 'Status'
-  end
-  object Button1: TButton
-    Left = 40
-    Top = 80
-    Width = 75
-    Height = 25
-    Caption = 'Button1'
-    TabOrder = 1
-    OnClick = Button1Click
-  end
-  object Button2: TButton
-    Left = 40
-    Top = 120
-    Width = 75
-    Height = 25
-    Caption = 'Button1'
-    TabOrder = 2
-    OnClick = Button2Click
+    ExplicitTop = 533
+    ExplicitWidth = 650
   end
   object MainMenu1: TMainMenu
-    Left = 67
-    Top = 23
+    Left = 107
+    Top = 47
     object File1: TMenuItem
       Caption = '&File'
       object Portal1: TMenuItem
@@ -54,47 +37,6 @@ object fmMain: TfmMain
       object Exit1: TMenuItem
         Caption = 'E&xit'
         OnClick = Exit1Click
-      end
-    end
-    object WURFL1: TMenuItem
-      Caption = '&WURFL'
-      object miWURFLLoad: TMenuItem
-        Caption = 'Load'
-        OnClick = miWURFLLoadClick
-      end
-      object miWURFLExport: TMenuItem
-        Caption = 'Export'
-        object miWURFL2PHP: TMenuItem
-          Caption = 'Export as PHP files'
-          OnClick = miWURFL2PHPClick
-        end
-        object miWURFL2TXT: TMenuItem
-          Caption = 'Export as TXT file'
-          OnClick = miWURFL2TXTClick
-        end
-        object miWURFL2DB: TMenuItem
-          Caption = 'Export in DB'
-          OnClick = miWURFL2DBClick
-        end
-      end
-      object miWURFLClose: TMenuItem
-        Caption = 'Close'
-        OnClick = miWURFLCloseClick
-      end
-    end
-    object Aforismi1: TMenuItem
-      Caption = '&Aforismi'
-      object BuildSearchKey1: TMenuItem
-        Caption = 'Build SearchKey'
-        OnClick = BuildSearchKey1Click
-      end
-      object GenerateConfig1: TMenuItem
-        Caption = 'Generate INI'
-        OnClick = GenerateConfig1Click
-      end
-      object GenerateRSS1: TMenuItem
-        Caption = 'Generate RSS'
-        OnClick = GenerateRSS1Click
       end
     end
   end

@@ -28,6 +28,10 @@ object fmPortal: TfmPortal
     object TabSheet5: TTabSheet
       Caption = 'Portal'
       ImageIndex = 4
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Splitter2: TSplitter
         Left = 181
         Top = 0
@@ -94,7 +98,7 @@ object fmPortal: TfmPortal
       ExplicitLeft = 0
       ExplicitTop = 0
       ExplicitWidth = 0
-      ExplicitHeight = 399
+      ExplicitHeight = 0
       object Splitter1: TSplitter
         Left = 181
         Top = 0
@@ -122,7 +126,6 @@ object fmPortal: TfmPortal
         Align = alLeft
         BevelOuter = bvNone
         TabOrder = 1
-        ExplicitHeight = 399
         object Label2: TLabel
           Left = 5
           Top = 30
@@ -174,7 +177,6 @@ object fmPortal: TfmPortal
         Align = alLeft
         BevelOuter = bvNone
         TabOrder = 2
-        ExplicitHeight = 399
         object iImageName: TEdit
           Left = 5
           Top = 5
@@ -276,7 +278,6 @@ object fmPortal: TfmPortal
         Align = alLeft
         BevelOuter = bvNone
         TabOrder = 3
-        ExplicitHeight = 399
         object Label3: TLabel
           Left = 25
           Top = 165
@@ -359,7 +360,6 @@ object fmPortal: TfmPortal
           Top = 160
           Width = 145
           Height = 21
-          ItemHeight = 0
           TabOrder = 7
           Text = 'cbLinkIcon'
         end

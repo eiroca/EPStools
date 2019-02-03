@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{6A65CB76-6289-440D-BB32-58003BC1ACFB}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="ContentManager\src\ContentManager.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="EPStool\src\EPStool.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="WURFLtool\src\WURFLtool.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="ContentManager">
+        <MSBuild Projects="ContentManager\src\ContentManager.dproj"/>
+    </Target>
+    <Target Name="ContentManager:Clean">
+        <MSBuild Projects="ContentManager\src\ContentManager.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ContentManager:Make">
+        <MSBuild Projects="ContentManager\src\ContentManager.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="EPStool">
+        <MSBuild Projects="EPStool\src\EPStool.dproj"/>
+    </Target>
+    <Target Name="EPStool:Clean">
+        <MSBuild Projects="EPStool\src\EPStool.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="EPStool:Make">
+        <MSBuild Projects="EPStool\src\EPStool.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="WURFLtool">
+        <MSBuild Projects="WURFLtool\src\WURFLtool.dproj"/>
+    </Target>
+    <Target Name="WURFLtool:Clean">
+        <MSBuild Projects="WURFLtool\src\WURFLtool.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="WURFLtool:Make">
+        <MSBuild Projects="WURFLtool\src\WURFLtool.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="ContentManager;EPStool;WURFLtool"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="ContentManager:Clean;EPStool:Clean;WURFLtool:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="ContentManager:Make;EPStool:Make;WURFLtool:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

@@ -1,31 +1,29 @@
-(****************************************************************************)
-(*  Copyright (C) 1996-2008 eIrOcA Enrico Croce & Simona Burzio             *)
-(*                                                                          *)
-(*  This program is free software: you can redistribute it and/or modify    *)
-(*  it under the terms of the GNU General Public License as published by    *)
-(*  the Free Software Foundation, either version 3 of the License, or       *)
-(*  (at your option) any later version.                                     *)
-(*                                                                          *)
-(*  This program is distributed in the hope that it will be useful,         *)
-(*  but WITHOUT ANY WARRANTY; without even the implied warranty of          *)
-(*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the           *)
-(*  GNU General Public License for more details.                            *)
-(*                                                                          *)
-(*  You should have received a copy of the GNU General Public License       *)
-(*  along with this program.  If not, see <http://www.gnu.org/licenses/>.   *)
-(*                                                                          *)
-(*--------------------------------------------------------------------------*)
-(*                                                                          *)
-(* Author :  Enrico Croce                                                   *)
-(*                                                                          *)
-(****************************************************************************)
+(* GPL > 3.0
+  Copyright (C) 1996-2019 eIrOcA Enrico Croce & Simona Burzio
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*)
+(*
+  @author(Enrico Croce)
+*)
 unit FPortal;
 
 interface
 
 uses
-  uEPSUtil, SysUtils, Classes,
-  Forms, Dialogs, ImgList, Controls, Menus, StdCtrls, ExtCtrls, ComCtrls;
+  uEPSUtil, SysUtils, Classes, Forms, Dialogs, ImgList, Controls, Menus, StdCtrls, ExtCtrls,
+  ComCtrls, System.ImageList;
 
 const
   MAIN_NODE = 'category_0';
@@ -89,8 +87,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure tvIconChange(Sender: TObject; Node: TTreeNode);
-    procedure tvIconChanging(Sender: TObject; Node: TTreeNode;
-      var AllowChange: Boolean);
+    procedure tvIconChanging(Sender: TObject; Node: TTreeNode; var AllowChange: Boolean);
     procedure Saveconfiguration1Click(Sender: TObject);
     procedure AddIcon1Click(Sender: TObject);
     procedure btUpdateIconClick(Sender: TObject);
@@ -102,11 +99,10 @@ type
     procedure btLinkUpdateClick(Sender: TObject);
     procedure miNewLinkClick(Sender: TObject);
     procedure tvPortalChange(Sender: TObject; Node: TTreeNode);
-    procedure tvPortalDragOver(Sender, Source: TObject; X, Y: Integer;
-      State: TDragState; var Accept: Boolean);
+    procedure tvPortalDragOver(Sender, Source: TObject; X, Y: Integer; State: TDragState;
+      var Accept: Boolean);
     procedure tvPortalDragDrop(Sender, Source: TObject; X, Y: Integer);
-    procedure tvPortalStartDrag(Sender: TObject;
-      var DragObject: TDragObject);
+    procedure tvPortalStartDrag(Sender: TObject; var DragObject: TDragObject);
   private
     { Private declarations }
     curNode: TTreeNode;
@@ -145,8 +141,8 @@ end;
 
 procedure TfmPortal.UpdateViewResource;
 var
- S: TStrings;
- i: integer;
+  S: TStrings;
+  i: Integer;
 begin
   pnIconEdit.Visible:= false;
   pnImageEdit.Visible:= false;
@@ -154,19 +150,19 @@ begin
   S:= TStringList.Create;
   try
     tvIcon.Items.Clear;
-    iconRoot:= tvIcon.Items.AddChildObjectFirst(nil, 'Icons', ICONROOT);
+    iconRoot:= tvIcon.Items.AddChildObjectFirst(nil, 'Icons', iconRoot);
     portalConfig.iconConf.ReadSections(S);
-    for i:= 0 to S.Count-1 do begin
+    for i:= 0 to S.Count - 1 do begin
       tvIcon.Items.AddChildObject(iconRoot, S[i], ID_ICONNODE);
     end;
     imageRoot:= tvIcon.Items.AddChildObjectFirst(nil, 'Images', ID_IMAGEROOT);
     portalConfig.imageConf.ReadSections(S);
-    for i:= 0 to S.Count-1 do begin
+    for i:= 0 to S.Count - 1 do begin
       tvIcon.Items.AddChildObject(imageRoot, S[i], ID_IMAGENODE);
     end;
     linkRoot:= tvIcon.Items.AddChildObjectFirst(nil, 'Links', ID_LINKROOT);
     portalConfig.linkConf.ReadSections(S);
-    for i:= 0 to S.Count-1 do begin
+    for i:= 0 to S.Count - 1 do begin
       tvIcon.Items.AddChildObject(linkRoot, S[i], ID_LINKNODE);
     end;
   finally
@@ -178,7 +174,7 @@ procedure TfmPortal.UpdateViewPortal;
   procedure processMenu(const parent, menu: string; const root: TTreeNode);
   var
     S: TStrings;
-    i: integer;
+    i: Integer;
     tmp: string;
     newroot: TTreeNode;
     newmenu: string;
@@ -188,9 +184,9 @@ procedure TfmPortal.UpdateViewPortal;
     try
       S.Delimiter:= ' ';
       S.DelimitedText:= menu;
-      for i:= 0 to S.Count-1 do begin
+      for i:= 0 to S.Count - 1 do begin
         tmp:= S[i];
-        if (tmp='-') then begin
+        if (tmp = '-') then begin
           pn:= portalConfig.portalNodes.Add as TPortalNode;
           pn.kind:= ID_PORTALFILLER;
           pn.cat:= parent;
@@ -203,14 +199,16 @@ procedure TfmPortal.UpdateViewPortal;
             pn.kind:= ID_PORTALLINK;
             pn.cat:= parent;
             pn.pos:= i;
-            tvPortal.Items.AddChildObject(root, portalConfig.linkConf.ReadString(tmp, 'caption', tmp), pn).ImageIndex:= 2;
+            tvPortal.Items.AddChildObject(root, portalConfig.linkConf.ReadString(tmp, 'caption',
+              tmp), pn).ImageIndex:= 2;
           end
           else begin
             pn:= portalConfig.portalNodes.Add as TPortalNode;
             pn.kind:= ID_PORTALCATEGORY;
             pn.cat:= parent;
             pn.pos:= i;
-            newroot:= tvPortal.Items.AddChildObject(root, portalConfig.portalConf.ReadString(tmp, 'caption', ''), pn);
+            newroot:= tvPortal.Items.AddChildObject(root, portalConfig.portalConf.ReadString(tmp,
+              'caption', ''), pn);
             newroot.ImageIndex:= 1;
             newmenu:= portalConfig.portalConf.ReadString(tmp, 'menu', '');
             processMenu(tmp, newmenu, newroot);
@@ -221,6 +219,7 @@ procedure TfmPortal.UpdateViewPortal;
       S.Free;
     end;
   end;
+
 var
   pn: TPortalNode;
 begin
@@ -254,7 +253,7 @@ end;
 procedure TfmPortal.tvIconChange(Sender: TObject; Node: TTreeNode);
 var
   name, images: string;
-  i, ps: integer;
+  i, ps: Integer;
   S1, S2: TStrings;
 begin
   S1:= TStringList.Create;
@@ -272,11 +271,11 @@ begin
       S1.Delimiter:= ' ';
       S1.DelimitedText:= images;
       lbIconImages.Items.AddStrings(S2);
-      for i:= 0 to S1.Count-1 do begin
-       ps:= lbIconImages.Items.IndexOf(S1[i]);
-       if (ps>=0) then begin
-         lbIconImages.Selected[ps]:= true;
-       end;
+      for i:= 0 to S1.Count - 1 do begin
+        ps:= lbIconImages.Items.IndexOf(S1[i]);
+        if (ps >= 0) then begin
+          lbIconImages.Selected[ps]:= true;
+        end;
       end;
     end
     else begin
@@ -315,16 +314,15 @@ begin
     end;
   finally
     S1.Free;
-    S2.free;
+    S2.Free;
   end;
 end;
 
-procedure TfmPortal.tvIconChanging(Sender: TObject; Node: TTreeNode;
-  var AllowChange: Boolean);
+procedure TfmPortal.tvIconChanging(Sender: TObject; Node: TTreeNode; var AllowChange: Boolean);
 begin
-  if Node.Data = ICONROOT then AllowChange:= false
-  else if Node.Data = IMAGEROOT then AllowChange:= false
-  else if Node.Data = LInKROOT then AllowChange:= false;
+  if Node.Data = iconRoot then AllowChange:= false
+  else if Node.Data = imageRoot then AllowChange:= false
+  else if Node.Data = linkRoot then AllowChange:= false;
 end;
 
 procedure TfmPortal.Saveconfiguration1Click(Sender: TObject);
@@ -344,12 +342,12 @@ procedure TfmPortal.btUpdateIconClick(Sender: TObject);
 var
   oldName, newName: string;
   S: TStrings;
-  i: integer;
+  i: Integer;
 begin
   if curNode = nil then exit;
-  newName:= iIconName.text;
+  newName:= iIconName.Text;
   for i:= length(newName) downto 1 do begin
-    if not (newName[i] in ['A'..'Z', 'a'..'z', '0'..'9', '_']) then begin
+    if not CharInSet(newName[i], ['A' .. 'Z', 'a' .. 'z', '0' .. '9', '_']) then begin
       delete(newName, i, 1);
     end;
   end;
@@ -364,7 +362,7 @@ begin
       curNode.Text:= newName;
       portalConfig.iconConf.EraseSection(oldName);
       S.Delimiter:= ' ';
-      for i:= 0 to lbIconImages.Items.Count-1 do begin
+      for i:= 0 to lbIconImages.Items.Count - 1 do begin
         if lbIconImages.Selected[i] then begin
           S.Add(lbIconImages.Items[i]);
         end;
@@ -380,14 +378,14 @@ procedure TfmPortal.btDeleteIconClick(Sender: TObject);
 begin
   if (curNode = nil) then exit;
   portalConfig.iconConf.EraseSection(curNode.Text);
-  curNode.Delete;
+  curNode.delete;
 end;
 
 procedure TfmPortal.btimageDeleteClick(Sender: TObject);
 begin
   if (curNode = nil) then exit;
   portalConfig.imageConf.EraseSection(curNode.Text);
-  curNode.Delete;
+  curNode.delete;
 end;
 
 procedure TfmPortal.miNewImageClick(Sender: TObject);
@@ -401,12 +399,12 @@ end;
 procedure TfmPortal.btImageUpdateClick(Sender: TObject);
 var
   oldName, newName: string;
-  i: integer;
+  i: Integer;
 begin
   if curNode = nil then exit;
-  newName:= iImageName.text;
+  newName:= iImageName.Text;
   for i:= length(newName) downto 1 do begin
-    if not (newName[i] in ['A'..'Z', 'a'..'z', '0'..'9', '_']) then begin
+    if not CharInSet(newName[i], ['A' .. 'Z', 'a' .. 'z', '0' .. '9', '_']) then begin
       delete(newName, i, 1);
     end;
   end;
@@ -431,19 +429,19 @@ procedure TfmPortal.btLinkDeleteClick(Sender: TObject);
 begin
   if (curNode = nil) then exit;
   portalConfig.linkConf.EraseSection(curNode.Text);
-  curNode.Delete;
+  curNode.delete;
 end;
 
 procedure TfmPortal.btLinkUpdateClick(Sender: TObject);
 var
   oldName, newName: string;
-  i: integer;
+  i: Integer;
   tmp: string;
 begin
   if curNode = nil then exit;
-  newName:= iLinkName.text;
+  newName:= iLinkName.Text;
   for i:= length(newName) downto 1 do begin
-    if not (newName[i] in ['A'..'Z', 'a'..'z', '0'..'9', '_']) then begin
+    if not CharInSet(newName[i], ['A' .. 'Z', 'a' .. 'z', '0' .. '9', '_']) then begin
       delete(newName, i, 1);
     end;
   end;
@@ -487,7 +485,7 @@ begin
   try
     curNode:= nil;
     pn:= TPortalNode(Node.Data);
-    if (pn=nil)then begin
+    if (pn = nil) then begin
       if pn.kind = ID_PORTALROOT then begin
         curNode:= Node;
         pnPortalEdit.Visible:= true;
@@ -501,42 +499,40 @@ begin
     end;
   finally
     S1.Free;
-    S2.free;
+    S2.Free;
   end;
 end;
 
-procedure TfmPortal.tvPortalDragOver(Sender, Source: TObject; X, Y: Integer;
-  State: TDragState; var Accept: Boolean);
+procedure TfmPortal.tvPortalDragOver(Sender, Source: TObject; X, Y: Integer; State: TDragState;
+  var Accept: Boolean);
 var
-  node: TTreeNode;
+  Node: TTreeNode;
 begin
   Accept:= false;
   if (Source = tvPortal) then begin
-    node:= tvPortal.GetNodeAt(X, Y);
-    if (node = nil) then Accept:= true
-    else if (TPortalNode(node.Data).kind<>ID_PORTALROOT) then Accept:= true
+    Node:= tvPortal.GetNodeAt(X, Y);
+    if (Node = nil) then Accept:= true
+    else if (TPortalNode(Node.Data).kind <> ID_PORTALROOT) then Accept:= true
     else Accept:= false;
   end;
 end;
 
 procedure TfmPortal.tvPortalDragDrop(Sender, Source: TObject; X, Y: Integer);
 var
-  node: TTreeNode;
+  Node: TTreeNode;
 begin
-   node:= tvPortal.GetNodeAt(X, Y);
-   if (node=nil) then begin
-     dragNode.MoveTo(portalRoot, naAddChild);
-   end
-   else begin
-     dragNode.MoveTo(node, naInsert);
-   end;
+  Node:= tvPortal.GetNodeAt(X, Y);
+  if (Node = nil) then begin
+    dragNode.MoveTo(portalRoot, naAddChild);
+  end
+  else begin
+    dragNode.MoveTo(Node, naInsert);
+  end;
 end;
 
-procedure TfmPortal.tvPortalStartDrag(Sender: TObject;
-  var DragObject: TDragObject);
+procedure TfmPortal.tvPortalStartDrag(Sender: TObject; var DragObject: TDragObject);
 begin
   dragNode:= tvPortal.Selected;
 end;
 
 end.
-
